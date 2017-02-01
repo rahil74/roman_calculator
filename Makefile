@@ -19,9 +19,9 @@ BUILD_TESTS_DIR = $(BUILD_DIR)/tests
 
 # Include paths
 INCLUDE_PATH :=
-INCLUDE_PATH += -I $(BUILD_DIR)
-INCLUDE_PATH += -I $(BUILD_LIB_DIR)
-INCLUDE_PATH += -I $(BUILD_TESTS_DIR)
+INCLUDE_PATH += -I $(MAKE_DIR)
+INCLUDE_PATH += -I $(LIB_DIR)
+INCLUDE_PATH += -I $(TESTS_DIR)
 
 # Library paths
 LIB_PATH :=
@@ -30,7 +30,8 @@ LIB_PATH += -L /usr/local/lib
 
 # Compilation Switches
 CFLAGS :=
-CFLAGS += -Wall
+CFLAGS += -fPIC 
+CFLAGS += -Wall 
 CFLAGS += $(INCLUDE_PATH)
 
 # Linker Switches

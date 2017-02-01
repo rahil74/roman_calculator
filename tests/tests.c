@@ -6,10 +6,17 @@
  */
 
 #include <check.h>
+#include "roman_calculator.h"
 
-START_TEST(initial_test)
+START_TEST(TestAdditionOfTwoRomanNumbers)
 {
-
+	open_roman_calculator();
+	ck_assert_str_eq(add_two_roman_numbers("I", "I"), "II");
+	ck_assert_str_eq(add_two_roman_numbers("XX", "II"), "XXII");
+	ck_assert_str_eq(add_two_roman_numbers("XIV", "LX"), "LXXIV");
+	ck_assert_str_eq(add_two_roman_numbers("II", "II"), "IV");
+	ck_assert_str_eq(add_two_roman_numbers("D", "D"), "M");
+	close_roman_calculator();
 }
 END_TEST
 
@@ -21,7 +28,7 @@ int main(void)
     int nf;
 
     suite_add_tcase(s1, tc1_1);
-    tcase_add_test(tc1_1, initial_test);
+    tcase_add_test(tc1_1, TestAdditionOfTwoRomanNumbers);
 
     srunner_run_all(sr, CK_ENV);
     nf = srunner_ntests_failed(sr);
