@@ -38,6 +38,7 @@ CFLAGS += $(INCLUDE_PATH)
 LDFLAGS :=
 LDFLAGS += $(LIB_PATH)
 LDFLAGS += -Wl,-R$(BUILD_LIB_DIR)
+LDFLAGS += -Wl,-R/usr/local/lib
 
 # Export variables for use in other makefiles
 export CC MAKE_DIR LIB_DIR TESTS_DIR BUILD_DIR BUILD_LIB_DIR BUILD_TESTS_DIR INCLUDE_PATH LIB_PATH CFLAGS LDFLAGS
@@ -55,3 +56,6 @@ clean:
 
 check:
 	@$(MAKE) -C tests -f tests.mk check
+
+coverage:
+	@$(MAKE) -C srcs -f roman_calculator.mk coverage

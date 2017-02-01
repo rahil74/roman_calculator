@@ -42,7 +42,7 @@ int main(void)
     tcase_add_test(tc1_1, TestAdditionOfTwoRomanNumbers);
     tcase_add_test(tc1_1, TestSubtractionOfTwoRomanNumbers);
 
-    srunner_run_all(sr, CK_ENV);
+    srunner_run_all(sr, CK_VERBOSE);
     nf = srunner_ntests_failed(sr);
     srunner_free(sr);
 
