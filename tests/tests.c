@@ -10,24 +10,20 @@
 
 START_TEST(TestAdditionOfTwoRomanNumbers)
 {
-	open_roman_calculator();
 	ck_assert_str_eq(add_two_roman_numbers("I", "I"), "II");
 	ck_assert_str_eq(add_two_roman_numbers("XX", "II"), "XXII");
 	ck_assert_str_eq(add_two_roman_numbers("XIV", "LX"), "LXXIV");
 	ck_assert_str_eq(add_two_roman_numbers("II", "II"), "IV");
 	ck_assert_str_eq(add_two_roman_numbers("D", "D"), "M");
-	close_roman_calculator();
 }
 END_TEST
 
 START_TEST(TestSubtractionOfTwoRomanNumbers)
 {
-	open_roman_calculator();
 	ck_assert_str_eq(subtract_two_roman_numbers("V", "I"), "IV");
 	ck_assert_str_eq(subtract_two_roman_numbers("M", "D"), "D");
 	ck_assert_str_eq(subtract_two_roman_numbers("XX", "II"), "XVIII");
 	ck_assert_str_eq(subtract_two_roman_numbers("X", "C"), "");
-	close_roman_calculator();
 }
 END_TEST
 
@@ -42,9 +38,11 @@ int main(void)
     tcase_add_test(tc1_1, TestAdditionOfTwoRomanNumbers);
     tcase_add_test(tc1_1, TestSubtractionOfTwoRomanNumbers);
 
+    open_roman_calculator();
     srunner_run_all(sr, CK_VERBOSE);
     nf = srunner_ntests_failed(sr);
     srunner_free(sr);
+    close_roman_calculator();
 
     return nf == 0 ? 0 : 1;
 }
