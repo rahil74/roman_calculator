@@ -98,7 +98,7 @@ void open_roman_calculator()
  */
 char* add_two_roman_numbers(const char* roman_numeral_1, const char* roman_numeral_2)
 {
-	int decimal_sum     = 0;
+	int decimal_sum = 0;
 
 	/* Populate the sum in decimal */
 	decimal_sum = roman_numeral_to_decimal(roman_numeral_1) +
@@ -112,8 +112,58 @@ char* add_two_roman_numbers(const char* roman_numeral_1, const char* roman_numer
 	printf("Sum in decimals: %d\n", decimal_sum);
 #endif
 
+	/* Reset the internal buffer */
+	memset(strSum, 0, MAX_SUM_BUFFER_SIZE);
+
 	/* Convert the decimal sum in roman numeral */
-	decimal_to_roman_numeral(decimal_sum, strSum);
+	if(decimal_sum > 0)
+		decimal_to_roman_numeral(decimal_sum, strSum);
+
+	return strSum;
+}
+
+/*
+ * subtract_two_roman_numbers
+ *
+ * Inputs: 	roman_numeral_1 (char*)
+ * 			roman_numeral_2 (char*)
+ *
+ * Output:	The result of subtraction of roman_numeral_1 and roman_numeral_2
+ *
+ * Notes:
+ * 	1. If any of the inputs are NULL or '/0', the output string is empty
+ * 	2. If any of the inputs are invalid numerals like "IIII", then it'll be ignored
+ * 	3. If roman_numeral_2 is bigger than roman_numeral_1, the output string is empty
+ */
+char* subtract_two_roman_numbers(const char* roman_numeral_1, const char* roman_numeral_2)
+{
+	int decimal  = 0;
+	int operand1 = 0;
+	int operand2 = 0;
+
+	operand1 = roman_numeral_to_decimal(roman_numeral_1);
+	operand2 = roman_numeral_to_decimal(roman_numeral_2);
+
+	/* Check if operand2 is bigger than operand1 */
+	if(operand2 >= operand1)
+		decimal = 0;
+	else
+		decimal = operand1 - operand2;
+
+#ifdef _DEBUG_PRINTS
+	printf("Roman Numeral 1: %s\t converted to %d\n",
+			roman_numeral_1, roman_numeral_to_decimal(roman_numeral_1));
+	printf("Roman Numeral 2: %s\t converted to %d\n",
+				roman_numeral_2, roman_numeral_to_decimal(roman_numeral_2));
+	printf("Subtraction in decimals: %d\n", decimal);
+#endif
+
+	/* Reset the internal buffer */
+	memset(strSum, 0, MAX_SUM_BUFFER_SIZE);
+
+	/* Convert the decimal sum in roman numeral */
+	if(decimal >0)
+		decimal_to_roman_numeral(decimal, strSum);
 
 	return strSum;
 }

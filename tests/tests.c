@@ -20,6 +20,17 @@ START_TEST(TestAdditionOfTwoRomanNumbers)
 }
 END_TEST
 
+START_TEST(TestSubtractionOfTwoRomanNumbers)
+{
+	open_roman_calculator();
+	ck_assert_str_eq(subtract_two_roman_numbers("V", "I"), "IV");
+	ck_assert_str_eq(subtract_two_roman_numbers("M", "D"), "D");
+	ck_assert_str_eq(subtract_two_roman_numbers("XX", "II"), "XVIII");
+	ck_assert_str_eq(subtract_two_roman_numbers("X", "C"), "");
+	close_roman_calculator();
+}
+END_TEST
+
 int main(void)
 {
     Suite *s1 = suite_create("Core");
@@ -29,6 +40,7 @@ int main(void)
 
     suite_add_tcase(s1, tc1_1);
     tcase_add_test(tc1_1, TestAdditionOfTwoRomanNumbers);
+    tcase_add_test(tc1_1, TestSubtractionOfTwoRomanNumbers);
 
     srunner_run_all(sr, CK_ENV);
     nf = srunner_ntests_failed(sr);

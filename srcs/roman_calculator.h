@@ -27,6 +27,8 @@
 void open_roman_calculator(void);
 /* Adds and returns the sum of roman_numeral_1 and roman_numeral_2 */
 char* add_two_roman_numbers(const char* roman_numeral_1, const char* roman_numeral_2);
+/* Subtracts two roman numbers */
+char* subtract_two_roman_numbers(const char* roman_numeral_1, const char* roman_numeral_2);
 /* Closes the roman calculator library */
 void close_roman_calculator(void);
 
